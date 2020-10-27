@@ -5,7 +5,8 @@ GBOX=`cat $(GBOXfile)`:$(VER)
 export
 
 docker:
-	docker build --build-arg VER=$(VER) --build-arg GBOX=$(GBOX) -t $(GBOX) .
+	docker build -t $(GBOX) .
+#	docker build --build-arg VER=$(VER) --build-arg GBOX=$(GBOX) -t $(GBOX) .
 
 docker-push:
 	docker push $(GBOX)

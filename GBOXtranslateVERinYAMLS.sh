@@ -1,5 +1,7 @@
 #!/usr/bin/env bash
 # Executed inside of a building gbox and assumes VER set
+VER=`cat VERSION.txt`
+GBOX=`cat GBOX_BASE_NAME.txt`:$VER
 
 echo "Translating in *.yaml: {VER} to $VER"
 echo "Translating in *.yaml: {GBOX} to $GBOX"

@@ -20,7 +20,7 @@ WORKDIR /usr/src/app
 
 COPY . .
 
-ARG VER=1.0.0
-ARG GBOX=please-set-your/gbox:variable
-ENV VER=$VER
-ENV GBOX=$GBOX
+# ARG VER=1.0.0
+# ARG GBOX=please-set-your/gbox:variable
+# ENV VER=$VER
+# ENV GBOX=$GBOX
