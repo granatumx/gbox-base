@@ -1,12 +1,13 @@
 !bquote
-`gbox-multitool` is a gbox that provides a number of original gboxes from R.
+`gbox-base` is a gbox that provides a few conveniences for building gboxes
 !equote
 
 ===== Prerequisites =====
 
 You mainly need a working copy of "Docker": "http://docker.com". It is used
 exclusively to manage system configurations for running numerous tools
-across numerous platforms.
+across numerous platforms. You also need a version of "bash": "https://www.gnu.org/software/bash/" that supports 
+"process substitution": "https://tldp.org/LDP/abs/html/process-sub.html".
 
 ===== Installation =====
 
@@ -19,21 +20,16 @@ it does not exist locally which facilitates installing on a server.
 source <( docker run --rm -it granatumx/scripts:1.0.0 gx.sh )
 !ec
 
-This command makes `gx` available. You can simply run `gx` to obtain a list of scripts available.
-
-The GranatumX database should be running to install gboxes. The gbox sources do not need to be installed.
-A gbox has a gbox.tgz compressed tar file in the root directory which the installer copies out and uses
-to deposit the preferences on the database. Since these gboxes are in fact docker images, they will be
-pulled if they do not exist locally on the system. Convenience scripts are provided for installing specific gboxes.
-
+Next, compile the files into the `granatumx/gbox-base:1.0.0` with:
 !bc sys
-$ gx run.sh                                         # Will start the database, taskrunner, and webapp
-$ gx installGbox.sh granatumx/gbox-multitool:1.0.0  # Install this gbox
-
-# Now go to http://localhost:34567 and see this gbox installed when you add a step.
+$ make docker
 !ec
 
 ===== Notes =====
 
 The gbox has a set of parameters passed into it on the frontend. These are defined in the `yamls/*.yaml` file.
-This tool uses R functions for the granatum_sdk to set up the gbox.
+A `package.yaml` file in `./` should reference the yaml definition in `yamls/your_gbox_name_here.yaml`.
+The `test/` directory and `test.sh` are set up to allow gbox authors to write test cases for their gboxes before deploying.
+The `gbox-base` docker image is used by `gbox-py-base` and `gbox-R-base`. It sets up the scripts like `GBOXtranslateVERinYAMLS.sh`,
+so those are available to run in inherited docker containers.
+

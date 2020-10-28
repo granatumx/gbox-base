@@ -1,0 +1,9 @@
+id: {GBOX}-{VER}
+
+meta:
+  maintainer:
+    name: Your Name
+    email: your_name@gmail.com
+
+gboxes:
+  - ./yamls/your_gbox_here.yaml  # You'll have to create this file, see the template for an example

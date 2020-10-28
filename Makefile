@@ -6,7 +6,6 @@ export
 
 docker:
 	docker build -t $(GBOX) .
-#	docker build --build-arg VER=$(VER) --build-arg GBOX=$(GBOX) -t $(GBOX) .
 
 docker-push:
 	docker push $(GBOX)
@@ -17,4 +16,5 @@ shell:
 # Kicks off a docker generation in its own gbox on the host using 
 # the passed in host working directory HOST_WD
 doc:
-	docker run --rm -v $(HOST_WD):/tmp/try -v /var/run/docker.sock:/var/run/docker.sock -it granatumx/doc:$(VER) doconce format pandoc /tmp/try/README.do.txt --github_md;
+	docker run --rm -v $(HOST_WD):/tmp/try -v /var/run/docker.sock:/var/run/docker.sock -it granatumx/doc:$(VER) doconce format pandoc /tmp/try/README.do.txt --github_md
+	rm -rf README.dlog
